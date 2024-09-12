@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4rjd4l3b0ajp"]
+
+[ext_resource type="Script" path="res://Scripts/Start.gd" id="1_sejs1"]
+[ext_resource type="Texture2D" uid="uid://tnv0mmgs8qj0" path="res://Sprites/background-day.png" id="2_qh6kj"]
+[ext_resource type="PackedScene" uid="uid://bk3tc525p1kjw" path="res://player.tscn" id="2_vug35"]
+[ext_resource type="PackedScene" uid="uid://bnlwfqjeai12" path="res://Ground.tscn" id="4_ngwne"]
+[ext_resource type="Texture2D" uid="uid://ct2kf4u4jnv0m" path="res://Sprites/message.png" id="4_y4om4"]
+
+[node name="Start" type="Node2D"]
+script = ExtResource("1_sejs1")
+metadata/_edit_horizontal_guides_ = [-165.0]
+
+[node name="Background-day" type="Sprite2D" parent="."]
+position = Vector2(180, 320)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_qh6kj")
+
+[node name="Player" parent="." instance=ExtResource("2_vug35")]
+
+[node name="Ground" parent="." instance=ExtResource("4_ngwne")]
+
+[node name="Score" type="RichTextLabel" parent="."]
+offset_left = 262.0
+offset_top = 8.0
+offset_right = 357.0
+offset_bottom = 48.0
+text = "Score: "
+
+[node name="Start Message" type="Sprite2D" parent="."]
+position = Vector2(179, 377)
+texture = ExtResource("4_y4om4")

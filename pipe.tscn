@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpm6atwwl5pmp"]
+
+[ext_resource type="Script" path="res://Scripts/pipe.gd" id="1_4vl8m"]
+[ext_resource type="Texture2D" uid="uid://1g5iqgeo4vle" path="res://Sprites/pipe-green.png" id="2_87wui"]
+[ext_resource type="AudioStream" uid="uid://u5rt106ph4lh" path="res://Audio/hit.ogg" id="3_xwbsa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yy7og"]
+size = Vector2(44, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqfbn"]
+size = Vector2(39, 543)
+
+[node name="Pipe" type="StaticBody2D"]
+position = Vector2(280, 251)
+script = ExtResource("1_4vl8m")
+metadata/_edit_horizontal_guides_ = [51.0, 251.0]
+
+[node name="Upper" type="Sprite2D" parent="."]
+position = Vector2(2.00001, -64)
+scale = Vector2(0.923077, 0.975)
+texture = ExtResource("2_87wui")
+flip_v = true
+region_rect = Rect2(528, 52, 97, 205)
+
+[node name="UpperExt" type="Sprite2D" parent="."]
+position = Vector2(2.00001, -324)
+scale = Vector2(0.923077, 0.9875)
+texture = ExtResource("2_87wui")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 56, 52, 264)
+
+[node name="Lower" type="Sprite2D" parent="."]
+position = Vector2(2, 447)
+scale = Vector2(0.923077, 0.96875)
+texture = ExtResource("2_87wui")
+region_rect = Rect2(528, 52, 97, 205)
+
+[node name="LowerExt" type="Sprite2D" parent="."]
+position = Vector2(2, 706)
+scale = Vector2(0.923077, 0.9875)
+texture = ExtResource("2_87wui")
+region_enabled = true
+region_rect = Rect2(0, 56, 52, 264)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 80)
+shape = SubResource("RectangleShape2D_yy7og")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="UpperColl" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2.5, -181.5)
+shape = SubResource("RectangleShape2D_jqfbn")
+
+[node name="LowerColl" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 565)
+shape = SubResource("RectangleShape2D_jqfbn")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xwbsa")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

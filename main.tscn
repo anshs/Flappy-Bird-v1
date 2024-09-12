@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://3cnnje6pbc1v"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_uedrb"]
+[ext_resource type="Texture2D" uid="uid://tnv0mmgs8qj0" path="res://Sprites/background-day.png" id="2_3j8pg"]
+[ext_resource type="PackedScene" uid="uid://bnlwfqjeai12" path="res://Ground.tscn" id="2_i88jj"]
+[ext_resource type="PackedScene" uid="uid://bk3tc525p1kjw" path="res://player.tscn" id="2_jaji3"]
+[ext_resource type="Script" path="res://Scripts/Debug.gd" id="4_xc2en"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_uedrb")
+metadata/_edit_horizontal_guides_ = [0.0, 640.0]
+metadata/_edit_vertical_guides_ = [360.0, 0.0]
+
+[node name="Background-day" type="Sprite2D" parent="."]
+visible = false
+z_index = -2
+position = Vector2(180, 320)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_3j8pg")
+
+[node name="Player" parent="." instance=ExtResource("2_jaji3")]
+
+[node name="Debug" type="Label" parent="."]
+visible = false
+offset_top = 1.0
+offset_right = 160.0
+offset_bottom = 24.0
+text = "Debug"
+script = ExtResource("4_xc2en")
+
+[node name="Ground" parent="." instance=ExtResource("2_i88jj")]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Score" type="RichTextLabel" parent="."]
+visible = false
+z_index = 2
+offset_left = 262.0
+offset_top = 8.0
+offset_right = 357.0
+offset_bottom = 48.0
+text = "Score: "

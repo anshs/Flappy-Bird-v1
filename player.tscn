@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://bk3tc525p1kjw"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_7pd8j"]
+[ext_resource type="Texture2D" uid="uid://drjfpuhi0mw76" path="res://Sprites/redbird-downflap.png" id="2_g1ypy"]
+[ext_resource type="Texture2D" uid="uid://dh80fu3woerji" path="res://Sprites/redbird-midflap.png" id="3_i1qk3"]
+[ext_resource type="Texture2D" uid="uid://cpcfymwkuoqja" path="res://Sprites/redbird-upflap.png" id="4_s8spa"]
+[ext_resource type="AudioStream" uid="uid://lx56r3b0xcqh" path="res://Audio/wing.ogg" id="5_w6wxr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ts3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g1ypy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i1qk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_s8spa")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1yvwy"]
+radius = 13.0384
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(215, 444)
+script = ExtResource("1_7pd8j")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6ts3p")
+animation = &"fly"
+frame_progress = 0.0212498
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_1yvwy")
+
+[node name="FlySound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_w6wxr")
+volume_db = -11.885
